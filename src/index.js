@@ -27,18 +27,39 @@ document.addEventListener('DOMContentLoaded', function (e) {
 
 		if (e.target.textContent === 'Good Dog!') {
 			e.target.textContent = 'Bad Dog!'
+			fetch(baseUrl + `/${e.target.dataset.id}`, {
+					method: "PATCH",
+					headers: {
+						"content-type": "application/json"
+					},
+					body: JSON.stringify({
+						isGoodDog: Boolean()
+					})
+				}).then(res => res.json())
+				.then(dog => isGoodDog = true)
 		} else {
 			e.target.textContent = 'Good Dog!'
+			fetch(baseUrl + `/${e.target.dataset.id}`, {
+					method: "PATCH",
+					headers: {
+						"content-type": "application/json"
+					},
+					body: JSON.stringify({
+						isGoodDog: Boolean()
+					})
+				}).then(res => res.json())
+				.then(dog => isGoodDog = true)
 		}
 
 	});
 
+
+
 	filterDiv.addEventListener('click', function (e) {
-		if(e.target.textConent === 'Filter good dogs: ON'){
-			e.target.textContent = 'Filter good dogs: OFF'
-		}
-		else {
-			e.target.textContent = 'Filter good dogs: ON'
+		if (e.target.innerHTML === 'Filter good dogs: ON') {
+			e.target.innerHTML = 'Filter good dogs: OFF'
+		} else {
+			e.target.innerHTML = 'Filter good dogs: ON'
 		}
 	});
 
